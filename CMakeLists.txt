@@ -14,4 +14,21 @@ project ("BigNums")
 # Добавьте источник в исполняемый файл этого проекта.
 add_library (BigNums SHARED src/BigNum.cpp include/BigNum.h src/Func.h src/Info.h)
 
+
+target_include_directories(BigNums PRIVATE
+    include
+)
+
 # TODO: Добавьте тесты и целевые объекты, если это необходимо.
+add_executable(test
+    src/main.cpp
+)
+
+target_link_libraries(test PRIVATE
+    BigNums
+)
+
+
+target_include_directories(test PRIVATE
+    include
+)

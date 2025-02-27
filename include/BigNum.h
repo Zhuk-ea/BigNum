@@ -1,5 +1,5 @@
 ﻿#ifndef BIGNUM_H_
-#define BIGNUM_H
+#define BIGNUM_H_
 
 #include <vector>
 #include <stdint.h>

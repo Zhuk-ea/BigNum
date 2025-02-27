@@ -374,3 +374,16 @@ void divide_test_int_int_res_longfrac() {
 		cout << "FAIL\n";
 	}
 }
+
+void all_divide_tests() {
+	cout << "divide test1: ";
+	divide_test1();
+	cout << "divide frac/frac: ";
+	divide_test_frac_frac();
+	cout << "divide frac/frac 2: ";
+	divide_test_frac_frac2();
+	cout << "divide int/int: ";
+	divide_test_integer_integer();
+	cout << "not_int_int_res_longfrac: ";
+	divide_test_int_int_res_longfrac();
+}

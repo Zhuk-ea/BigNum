@@ -7,11 +7,10 @@ using namespace std;
 
 int main(void) {
 
-	//divide_test1();
-	//divide_test_integer_integer();
-	//divide_test_frac_frac();
-	//divide_test_frac_frac2();
-	divide_test_int_int_res_longfrac();
+	all_plus_tests();
+	all_minus_tests();
+	all_multiply_tests();
+	all_divide_tests();
 
 	return 0;
 }

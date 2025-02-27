@@ -484,7 +484,6 @@ const BigNum BigNum::operator/ (const BigNum& b) const {
 	// Делим докидывая только 0
 	for (i; i < need_ops; ++i) {
 		if (temp.arr.size() == 0) {
-			cout << "sf";
 			temp.arr.push_back(0);
 			temp.befor_dot = 1;
 		}
@@ -498,10 +497,8 @@ const BigNum BigNum::operator/ (const BigNum& b) const {
 		res.shift_left(1);
 	}
 	res.shift_right2(1);
-	rint_bits(res.arr[0]);
 	if (res_b_d == 0) {
 		res.shift_left((32 - res.befor_dot + 1), 1);
-		rint_bits(res.arr[0]);
 	}
 	else {
 		res.shift_left((32 - res.befor_dot) + res_b_d);
