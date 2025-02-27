@@ -1,4 +1,3 @@
-﻿#pragma once
 #include "BigNum.h"
 #include "Func.h"
 

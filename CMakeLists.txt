@@ -12,7 +12,7 @@ endif()
 project ("BigNums")
 
 # Добавьте источник в исполняемый файл этого проекта.
-add_library (BigNums SHARED src/BigNum.cpp include/BigNum.h src/Func.h src/Info.h)
+add_library (BigNums SHARED src/BigNum.cpp include/BigNum.h include/Func.h include/Info.h)
 
 
 target_include_directories(BigNums PRIVATE
@@ -20,15 +20,18 @@ target_include_directories(BigNums PRIVATE
 )
 
 # TODO: Добавьте тесты и целевые объекты, если это необходимо.
-add_executable(test
+add_executable(tests
+    src/Tests.cpp
     src/main.cpp
 )
 
-target_link_libraries(test PRIVATE
+target_link_libraries(tests PRIVATE
     BigNums
 )
 
 
-target_include_directories(test PRIVATE
+target_include_directories(tests PRIVATE
     include
 )
+
+add_custom_target(test ./tests DEPENDS tests)
