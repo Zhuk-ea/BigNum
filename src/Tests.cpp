@@ -283,7 +283,7 @@ void all_multiply_tests() {
 	multiply_test_minus_minus();
 	cout << "int_longnum1 * int_longnum2: ";
 	multiply_test_longnums_integer();
-	cout << "not_int_longnum1 * not_int_longnum2: ";
+	cout << "frac_longnum1 * frac_longnum2: ";
 	multiply_test_longnums_not_integer();
 
 }
@@ -340,6 +340,7 @@ void divide_test_frac_frac() {
 		cout << "FAIL\n";
 	}
 }
+
 void divide_test_frac_frac2() {
 	// given
 	BigNum f1("0.28125", 6);
@@ -356,6 +357,7 @@ void divide_test_frac_frac2() {
 		cout << "FAIL\n";
 	}
 }
+
 
 void divide_test_int_int_res_longfrac() {
 	// given
@@ -375,14 +377,14 @@ void divide_test_int_int_res_longfrac() {
 }
 
 void all_divide_tests() {
-	cout << "divide test1: ";
+	cout << "frac/frac = int: ";
 	divide_test1();
-	cout << "divide frac/frac: ";
+	cout << "frac/frac = frac: ";
 	divide_test_frac_frac();
-	cout << "divide frac/frac 2: ";
-	divide_test_frac_frac2();
-	cout << "divide int/int: ";
+	//cout << "frac/frac 2: ";
+	//divide_test_frac_frac2();
+	cout << "int/int = int: ";
 	divide_test_integer_integer();
-	cout << "not_int_int_res_longfrac: ";
+	cout << "int/int = frac: ";
 	divide_test_int_int_res_longfrac();
 }

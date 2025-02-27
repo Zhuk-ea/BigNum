@@ -40,7 +40,7 @@ public:
 		sign = sgn;
 		arr = ar;
 	};
-	void shift_right(unsigned sh, unsigned nou = 0) { //только для умножения
+	void shift_right(unsigned sh, unsigned nou = 0) { //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (!sh) {
 			return;
 		}
@@ -77,9 +77,6 @@ public:
 		befor_dot--;
 	}
 	Info get_part(unsigned b_d) {
-		//
-		//
-
 
 		Info res;
 		unsigned unfull = befor_dot % 32;
@@ -92,7 +89,6 @@ public:
 			res.arr.pop_front();
 		}
 		res.befor_dot = b_d;
-		cout << endl;
 		return res;
 	}
 
@@ -103,13 +99,6 @@ public:
 		}
 		uint32_t mem = 0;
 		uint32_t pat = ((1 << sh) - 1) << (32 - sh);
-		/*
-		for (int i = 31; i > -1; --i) {
-			cout << ((pat & (1 << (i % 32))) != 0);
-		}
-		cout << endl;
-		*/
-
 		arr.push_front(0);
 		for (int i = arr.size() - 1; i > -1; --i) {
 			uint32_t t = arr[i] & pat;
