@@ -3,9 +3,9 @@
 void plus_test_plus_plus() {
 
 	// given
-	BigNum f1("12.5", 3);
-	BigNum f2("2.5", 2);
-	BigNum correct_anw("15", 3);
+	BigNum f1("0.1");
+	BigNum f2("0.1");
+	BigNum correct_anw("0.2");
 
 	// when 
 	BigNum res = f1 + f2;
@@ -43,15 +43,13 @@ void plus_test_minus_minus() {
 void plus_test_plus_minus() {
 
 	// given
-	BigNum f1("12.5", 3);
-	BigNum f2("-2.5", 2);
-	BigNum correct_anw("10", 3);
-
+	const BigNum f1("-10.15");
+	const BigNum f2("10.75");
+	const BigNum correct_anw("0.6015625");
 	// when 
-	BigNum res = f1 + f2;
+	const BigNum res = f1 + f2;
 
 	// then
-
 	if (res == correct_anw) {
 		cout << "OK\n";
 	}
@@ -182,9 +180,9 @@ void all_minus_tests() {
 
 void multiply_test_plus_plus() {
 	// given
-	BigNum f1("12.5", 3);
-	BigNum f2("2.5", 2);
-	BigNum correct_anw("31.25", 3);
+	BigNum f1("15.84375");
+	BigNum f2("-11.8125");
+	BigNum correct_anw("-187.154296875");
 
 	// when 
 	BigNum res = f1 * f2;
@@ -291,9 +289,9 @@ void all_multiply_tests() {
 
 void divide_test1() {
 	// given
-	BigNum f1("12.5", 3);
-	BigNum f2("2.5", 2);
-	BigNum correct_anw("5", 3);
+	BigNum f1("-2,5");
+	BigNum f2("2,5");
+	BigNum correct_anw("-1");
 
 	// when 
 	BigNum res = f1 / f2;
@@ -326,9 +324,10 @@ void divide_test_integer_integer() {
 
 void divide_test_frac_frac() {
 	// given
-	BigNum f1("0.5625", 4);
-	BigNum f2("0.8125", 4);
-	BigNum correct_anw("0.8125", 4);
+	BigNum f1("0.5625");
+	BigNum f2("0.8125");
+	BigNum correct_anw("0,692307692");
+	
 
 	// when 
 	BigNum res = f1 / f2;
@@ -345,7 +344,7 @@ void divide_test_frac_frac2() {
 	// given
 	BigNum f1("0.28125", 6);
 	BigNum f2("0.8125", 4);
-	BigNum correct_anw("0.34375", 6);
+	BigNum correct_anw("0,346153846", 6);
 
 	// when 
 	BigNum res = f1 / f2;
@@ -361,9 +360,9 @@ void divide_test_frac_frac2() {
 
 void divide_test_int_int_res_longfrac() {
 	// given
-	BigNum f1("1", 10);
+	BigNum f1("2", 10);
 	BigNum f2("3", 4);
-	BigNum correct_anw("0,33", 10);
+	BigNum correct_anw("0,6666", 10);
 
 	// when 
 	BigNum res = f1 / f2;

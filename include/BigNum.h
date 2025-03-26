@@ -93,13 +93,12 @@ public:
 		sign = inf.sign;
 		arr = inf.arr;
 	}
-	BigNum(string& str, unsigned a_d = 32);
-	BigNum(const char* str, unsigned a_d = 32) {
+	BigNum(string& str, unsigned a_d = 8);
+	BigNum(const char* str, unsigned a_d = 8) {
 		string s = str;
 		*this = BigNum(s, a_d);
 	}
 	void print_in_bin() const;
-	void print_in_dec() const;
 	const BigNum operator+(const BigNum& b) const;
 	const BigNum operator-(const BigNum& b) const;
 	const BigNum operator*(const BigNum& b) const;

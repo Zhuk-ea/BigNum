@@ -163,7 +163,7 @@ unsigned get_int_part(deque<uint32_t>& arr, string& str) {
 	while (s != "") {
 		int bit = string_divide_by_two(s);
 		if (i % 32 == 0) {
-			arr.push_front(0);
+			arr.push_front(uint32_t(0));
 		}
 		if (bit) {
 			uint32_t pat = (1 << (i % 32));
@@ -184,7 +184,7 @@ void get_frac_part(deque<uint32_t>& arr, string& str, unsigned a_d) {
 	for (int i = 0; i < a_d; ++i) {
 		str = multiply_by_two_for_frac(str);
 		if (i % 32 == 0) {
-			arr.push_back(0);
+			arr.push_back(uint32_t(0));
 			++siz;
 		}
 		if (str[0] == '!') {
@@ -245,6 +245,7 @@ Info arr_plus(Info& a, Info& b) {
 			Res.arr.push_back(a.arr[i]);
 		}
 	}
+
 	for (int i = trait - 1; i >= dif1; --i) {
 		uint64_t temp = (uint64_t)a.arr[i - dif1 * ak1] + (uint64_t)b.arr[i - dif1 * bk1] + transf;
 		if (temp > 0xFFFFFFFF) {
@@ -287,6 +288,10 @@ Info arr_plus(Info& a, Info& b) {
 		++b_d;
 	}
 	else {
+		if (b_d == 0) {
+			Res.arr.push_front(0);
+			return(Res);
+		}
 		Res.befor_dot = b_d - b_d % 32 + 32;
 		for (int i = 31; i > -1; --i) {
 			uint32_t pat = 1 << i;
@@ -345,20 +350,32 @@ Info arr_minus(Info& a, Info& b) {
 			Res.arr.push_back(a.arr[i]);
 		}
 	}
+
+	int add_a = 0;
+	int add_b = 0;
+	if (a.befor_dot == 0) {
+		add_a ++;
+	}
+	if (b.befor_dot == 0) {
+		add_b ++;
+	}
+
 	for (int i = trait - 1; i >= dif1; --i) {
 		uint64_t temp;
-		if ((uint64_t)a.arr[i - dif1 * ak1] < (uint64_t)b.arr[i - dif1 * bk1] + transf) {
+		if ((uint64_t)a.arr[i - dif1 * ak1 + add_a] < (uint64_t)b.arr[i - dif1 * bk1 + add_b] + transf) {
 			transf = 1;
-			temp = (uint64_t)a.arr[i - dif1 * ak1] + (uint64_t)b.arr[i - dif1 * bk1] + 0x80000000 - transf;
+			temp = (uint64_t)a.arr[i - dif1 * ak1 + add_a] + (uint64_t)b.arr[i - dif1 * bk1+ add_b] + 0x80000000 - transf;
 		}
 		else {
-			temp = (uint64_t)a.arr[i - dif1 * ak1] - (uint64_t)b.arr[i - dif1 * bk1] - transf;
+			temp = (uint64_t)a.arr[i - dif1 * ak1 + add_a] - (uint64_t)b.arr[i - dif1 * bk1 + add_b] - transf;
 		}
 		Res.arr.push_front(temp);
+
 		if (i == 0) {
 			break;
 		}
 	}
+
 	if (dif1) {
 		for (int i = dif1 - 1; i > -1; --i) {
 			uint64_t temp;
@@ -373,6 +390,7 @@ Info arr_minus(Info& a, Info& b) {
 			Res.arr.push_front(temp);
 		}
 	}
+
 	Res.after_dot = a_d;
 	for (int i = 0; i < b_d / 32 + (b_d % 32 != 0); ++i) {
 		if (Res.arr[0] == 0) {
@@ -381,6 +399,7 @@ Info arr_minus(Info& a, Info& b) {
 	}
 	b_d = Res.arr.size() - Res.after_dot / 32 - (Res.after_dot % 32 != 0);
 	b_d *= 32;
+	if (b_d) {
 	for (int i = 31; i > -1; --i) {
 		uint32_t pat = 1 << i;
 		if ((Res.arr[0] & pat) == 0) {
@@ -390,8 +409,11 @@ Info arr_minus(Info& a, Info& b) {
 			break;
 		}
 	}
+	}
+	if (b_d == 0) {
+		Res.arr.push_front(0);
+	}
 	Res.befor_dot = b_d;
-
 
 	return Res;
 }

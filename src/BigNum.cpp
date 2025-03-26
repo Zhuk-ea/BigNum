@@ -104,7 +104,12 @@ int compare(const BigNum& a, const BigNum& b, unsigned accuracy) {
 	else if (accuracy < mx_len) {
 		mx_len = accuracy;
 	}
-	for (int i = 0; i < mn_len / 32 + (mn_len % 32 != 0); ++i) {
+
+	int add = 0;
+	if (infa.befor_dot == 0) {
+		add ++;
+	}
+	for (int i = add; i < mn_len / 32 + (mn_len % 32 != 0) + add; ++i) {
 		if (mx[mx_bd + i] > mn[mn_bd + i]) {
 			return rev;
 		}
@@ -206,6 +211,7 @@ bool BigNum::operator>(const BigNum& b) const {
 
 }
 bool BigNum::operator==(const BigNum& b) const {
+
 	unsigned acc = max(after_dot, b.after_dot);
 	int res = compare(*this, b, acc);
 	if (res == 0) {
@@ -275,7 +281,9 @@ const BigNum BigNum::operator+(const BigNum& b) const {
 		return res;
 	}
 	if (sign == -1) {
-		return b - *this;
+		BigNum t_a = *this;
+		t_a.revers_sign();
+		return b - t_a;
 	} // -+
 	BigNum t_b = b;
 	t_b.revers_sign();
@@ -400,10 +408,10 @@ const BigNum BigNum::operator/ (const BigNum& b) const {
 	unsigned res_a_d = max(after_dot, b.after_dot);
 	unsigned b_d = 0;
 
-
-	// Сдвинули так, чтобы делитель стал целым и делимое так же подвинули
 	Info ia = get_info();
 	Info ib = b.get_info();
+	ia.sign = 1;
+	ib.sign = 1;
 
 	// Сдвигаем ia и ib на столько, чтобы ib стало целым
 	ia.shift_right((32 - ib.after_dot) % 32, 1);
@@ -504,7 +512,7 @@ const BigNum BigNum::operator/ (const BigNum& b) const {
 	}
 	res.befor_dot = res_b_d;
 	res.after_dot = res_a_d;
-
+	res.sign = sign * b.sign;
 
 	return BigNum(res);
 }
