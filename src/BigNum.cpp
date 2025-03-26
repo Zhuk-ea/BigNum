@@ -374,7 +374,6 @@ const BigNum BigNum::operator* (const BigNum& b) const {
 	unsigned b_d = res.befor_dot - a_d;
 	unsigned actual_a_d = max(t_a.after_dot, t_b.after_dot);
 	unsigned bad_ints = (a_d - actual_a_d) / 32;
-
 	// do good
 
 	Info r = res.get_info();

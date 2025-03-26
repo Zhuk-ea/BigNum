@@ -42,7 +42,7 @@ TEST_CASE("Plus operation works correctly, when both positive", "[arithmetic]") 
     REQUIRE(result == expected);
 }
 
-TEST_CASE("Plus operation works correctly, when one negative", "[arithmetic]") {
+TEST_CASE("Plus operation works correctly, when one negative", "[arithmetic]") { // Исходный ответ не совпадал из-за расчёта на другую точность по умолчанию
     // given
     const LongNumber num1("-10.15");
     const LongNumber num2("10.75");
@@ -98,10 +98,10 @@ TEST_CASE("Minus operation works correctly", "[arithmetic]") {
     REQUIRE(result_negative == expected_negative);
 }
 
-TEST_CASE("Multiply operation works correctly, when both positive", "[arithmetic]") { // Не работает из-за расчёта на другую точность по умолчанию
+TEST_CASE("Multiply operation works correctly, when both positive", "[arithmetic]") { // Исходный ответ не совпадал из-за расчёта на другую точность по умолчанию
     // given
     const LongNumber num1(
-        "15.84375"
+        "15.84375",
     );
     const LongNumber num2(
         "11.8125"

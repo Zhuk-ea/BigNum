@@ -48,7 +48,6 @@ void plus_test_plus_minus() {
 	const BigNum correct_anw("0.6015625");
 	// when 
 	const BigNum res = f1 + f2;
-
 	// then
 	if (res == correct_anw) {
 		cout << "OK\n";
@@ -183,6 +182,7 @@ void multiply_test_plus_plus() {
 	BigNum f1("15.84375");
 	BigNum f2("-11.8125");
 	BigNum correct_anw("-187.154296875");
+	
 
 	// when 
 	BigNum res = f1 * f2;
