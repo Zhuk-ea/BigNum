@@ -206,7 +206,6 @@ Info arr_plus(Info& a, Info& b) {
 	unsigned ak1, bk1, ak2, bk2;
 	unsigned b_d, a_d;
 
-
 	if (a.befor_dot > b.befor_dot) {
 		ak1 = 0;
 		bk1 = 1;
@@ -246,8 +245,16 @@ Info arr_plus(Info& a, Info& b) {
 		}
 	}
 
+	int add_a = 0;
+	int add_b = 0;
+	if (a.befor_dot == 0) {
+		add_a ++;
+	}
+	if (b.befor_dot == 0) {
+		add_b ++;
+	}
 	for (int i = trait - 1; i >= dif1; --i) {
-		uint64_t temp = (uint64_t)a.arr[i - dif1 * ak1] + (uint64_t)b.arr[i - dif1 * bk1] + transf;
+		uint64_t temp = (uint64_t)a.arr[i - dif1 * ak1 + add_a] + (uint64_t)b.arr[i - dif1 * bk1  + add_b] + transf;
 		if (temp > 0xFFFFFFFF) {
 			transf = 1;
 		}
@@ -288,21 +295,22 @@ Info arr_plus(Info& a, Info& b) {
 		++b_d;
 	}
 	else {
-		if (b_d == 0) {
+		if (b_d == 0 && !transf) {
 			Res.arr.push_front(0);
 			return(Res);
 		}
-		Res.befor_dot = b_d - b_d % 32 + 32;
+		b_d = b_d - b_d % 32 + 32;
 		for (int i = 31; i > -1; --i) {
 			uint32_t pat = 1 << i;
 			if ((Res.arr[0] & pat) == 0) {
-				Res.befor_dot -= 1;
+				b_d -= 1;
 			}
 			else {
 				break;
 			}
-		}
+		}	
 	}
+	Res.befor_dot = b_d;
 	Res.after_dot = a_d;
 	return Res;
 }

@@ -101,7 +101,7 @@ TEST_CASE("Minus operation works correctly", "[arithmetic]") {
 TEST_CASE("Multiply operation works correctly, when both positive", "[arithmetic]") { // Исходный ответ не совпадал из-за расчёта на другую точность по умолчанию
     // given
     const LongNumber num1(
-        "15.84375",
+        "15.84375"
     );
     const LongNumber num2(
         "11.8125"

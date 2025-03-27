@@ -3,9 +3,10 @@
 void plus_test_plus_plus() {
 
 	// given
-	BigNum f1("0.1");
-	BigNum f2("0.1");
-	BigNum correct_anw("0.2");
+	BigNum f1("0.5");
+	BigNum f2("0.75");
+	BigNum correct_anw("1.25");
+
 
 	// when 
 	BigNum res = f1 + f2;
